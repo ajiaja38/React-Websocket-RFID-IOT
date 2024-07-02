@@ -9,19 +9,19 @@ function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
 
   useEffect(() => {
-    const socket = io("http://localhost:8080");
+    const socket = io("http://localhost:5200");
     socket.on("connect", () => {
       console.log({ id: socket.id });
     });
 
-    socket.on("rfid-data", (data) => {
+    socket.on("rfid-payload", (data) => {
       console.log("Received RFID data:", data);
       setData((prevState) => [...prevState, data]);
     });
 
     return () => {
       socket.off("connect");
-      socket.off("rfid-data");
+      socket.off("rfid-payload");
     };
   }, []);
 
