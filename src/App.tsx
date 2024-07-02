@@ -9,7 +9,7 @@ function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
 
   useEffect(() => {
-    const socket = io("http://localhost:5200");
+    const socket = io("https://lab2.smartsystem.id/");
     socket.on("connect", () => {
       console.log({ id: socket.id });
     });
@@ -19,9 +19,14 @@ function App() {
       setData((prevState) => [...prevState, data]);
     });
 
+    socket.on("response-user-503df6b8-7ea5-4339-9963-6afb70eca240", (data) => {
+      alert(data.message);
+    });
+
     return () => {
       socket.off("connect");
       socket.off("rfid-payload");
+      socket.off("response-payload");
     };
   }, []);
 
@@ -46,8 +51,8 @@ function App() {
               <td>Type</td>
             </tr>
             {data
-              .map((item) => (
-                <tr key={item.id}>
+              .map((item, index: number) => (
+                <tr key={index}>
                   <td>{item.mac}</td>
                   <td>{item.id}</td>
                   <td>{item.type}</td>
