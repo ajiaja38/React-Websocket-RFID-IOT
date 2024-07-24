@@ -9,7 +9,7 @@ function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
 
   useEffect(() => {
-    const socket = io("https://lab2.smartsystem.id/");
+    const socket = io("wss://lab2.smartsystem.id/");
     socket.on("connect", () => {
       console.log({ id: socket.id });
     });
