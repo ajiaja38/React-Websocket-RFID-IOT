@@ -4,6 +4,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { IPayloadRMQ } from "./types/interface/IPayload.rmq";
+import { ResponseEntity } from "./types/interface/ResponseEntity";
 
 function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
@@ -19,9 +20,12 @@ function App() {
       setData((prevState) => [...prevState, data]);
     });
 
-    socket.on("response-user-477b7302-38f7-40a3-b610-8e48af5a1e01", (data) => {
-      console.log(data);
-    });
+    socket.on(
+      "response-user-477b7302-38f7-40a3-b610-8e48af5a1e01",
+      (data: ResponseEntity) => {
+        console.log(data);
+      }
+    );
 
     return () => {
       socket.off("connect");
