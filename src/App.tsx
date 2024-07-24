@@ -19,8 +19,8 @@ function App() {
       setData((prevState) => [...prevState, data]);
     });
 
-    socket.on("response-user-503df6b8-7ea5-4339-9963-6afb70eca240", (data) => {
-      alert(data.message);
+    socket.on("response-user-477b7302-38f7-40a3-b610-8e48af5a1e01", (data) => {
+      console.log(data);
     });
 
     return () => {
