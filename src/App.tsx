@@ -23,7 +23,7 @@ function App() {
     socket.on(
       "response-user-477b7302-38f7-40a3-b610-8e48af5a1e01",
       (data: ResponseEntity) => {
-        console.log(data);
+        alert(data.message);
       }
     );
 
