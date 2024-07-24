@@ -15,7 +15,7 @@ function App() {
       console.log({ id: socket.id });
     });
 
-    socket.on("rfid-payload", (data) => {
+    socket.on("rfid-payload", (data: IPayloadRMQ) => {
       console.log("Received RFID data:", data);
       setData((prevState) => [...prevState, data]);
     });
