@@ -10,7 +10,7 @@ function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
 
   useEffect(() => {
-    const socket = io("wss://lab2.smartsystem.id/");
+    const socket = io("wss://presensi-service.lskk.co.id/");
     socket.on("connect", () => {
       console.log({ id: socket.id });
     });
@@ -21,7 +21,7 @@ function App() {
     });
 
     socket.on(
-      "response-user-477b7302-38f7-40a3-b610-8e48af5a1e01",
+      "response-user-85f335f1-c93b-4eb2-af31-66f29ff93b3d",
       (data: ResponseEntity) => {
         alert(data.message);
       }
