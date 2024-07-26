@@ -49,20 +49,24 @@ function App() {
       <div className="card">
         {data.length ? (
           <table>
-            <tr>
-              <td>MAC</td>
-              <td>ID</td>
-              <td>Type</td>
-            </tr>
-            {data
-              .map((item, index: number) => (
-                <tr key={index}>
-                  <td>{item.mac}</td>
-                  <td>{item.id}</td>
-                  <td>{item.type}</td>
-                </tr>
-              ))
-              .reverse()}
+            <thead>
+              <tr>
+                <td>MAC</td>
+                <td>ID</td>
+                <td>Type</td>
+              </tr>
+            </thead>
+            <tbody>
+              {data
+                .map((item, index: number) => (
+                  <tr key={index}>
+                    <td>{item.mac}</td>
+                    <td>{item.id}</td>
+                    <td>{item.type}</td>
+                  </tr>
+                ))
+                .reverse()}
+            </tbody>
           </table>
         ) : null}
       </div>
