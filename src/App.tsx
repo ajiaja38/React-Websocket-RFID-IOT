@@ -9,15 +9,15 @@ import { ResponseEntity } from "./types/interface/ResponseEntity";
 function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     const socket = io("wss://presensi-service.lskk.co.id/");
-    socket.on("connect", () => {
+    socket.on("connect", (): void => {
       console.log({ id: socket.id });
     });
 
-    socket.on("rfid-payload", (data: IPayloadRMQ) => {
+    socket.on("rfid-payload", (data: IPayloadRMQ): void => {
       console.log("Received RFID data:", data);
-      setData((prevState) => [...prevState, data]);
+      setData((prevState): IPayloadRMQ[] => [...prevState, data]);
     });
 
     socket.on(
@@ -27,7 +27,7 @@ function App() {
       }
     );
 
-    return () => {
+    return (): void => {
       socket.off("connect");
       socket.off("rfid-payload");
       socket.off("response-payload");
