@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { IPayloadRMQ } from "./types/interface/IPayload.rmq";
 import { ResponseEntity } from "./types/interface/ResponseEntity";
+import Swal from "sweetalert2";
 
 function App() {
   const [data, setData] = useState<IPayloadRMQ[]>([]);
@@ -23,7 +24,12 @@ function App() {
     socket.on(
       "response-user-85f335f1-c93b-4eb2-af31-66f29ff93b3d",
       (data: ResponseEntity) => {
-        alert(data.message);
+        Swal.fire({
+          title: "Notification",
+          text: data.message,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       }
     );
 
